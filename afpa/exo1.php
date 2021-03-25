@@ -232,7 +232,49 @@ echo "<br/>";
 
 };
 tablmulti();
+// je commence php et html  "generation de html via PHP"
+/* ex1-
+on vous demande ce créer un tab de produits qui a la structure suivante(modifié)
+$tab = [
+    "id" => ["nom", "descrip", "photo.png"],
+  ];
+ensuite de generer la liste de produits en utilisant le composant card de BS*/
 
+<?php
+			include_once("db_connect.php");
+			$sql = "SELECT id, name, image, description, address, website, facebook, gplus, twitter FROM cards";
+			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+			while( $record = mysqli_fetch_assoc($resultset) ) {
+			?>
+            <div class="card hovercard">
+                <div class="cardheader">               
+					<div class="avatar">
+						<img alt="" src="<?php echo $record['image']; ?>">
+					</div>
+				 </div>
+                <div class="card-body info">
+                    <div class="title">
+                        <a href="#"><?php echo $record['name']; ?></a>
+                    </div>
+					<div class="desc"> <a target="_blank" href="<?php echo $record['website']; ?>"><?php echo $record['website']; ?></a></div>		
+                    <div class="desc"><?php echo $record['description']; ?></div>      
+					<div class="desc"><?php echo $record['address']; ?></div>								
+                </div>
+                <div class="card-footer bottom">
+                    <a class="btn btn-primary btn-twitter btn-sm" href="<?php echo $record['twitter']; ?>">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher"
+                       href="<?php echo $record['gplus']; ?>">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher"
+                       href="<?php echo $record['facebook']; ?>">
+                        <i class="fa fa-facebook"></i>
+                    </a>                    
+                </div>
+            </div>
+			<?php } ?>
 ?>
 
 
