@@ -29,15 +29,21 @@ ensuite de generer la liste de produits en utilisant le composant card de BS -->
     {"nom" : "tablette", "description" :"une tablette", "prix" : 120, "categ" :"téléphonie"},
     {"nom" : "aspirateur", "description" :"un aspirateur", "prix" : 200, "categ" :"électroménager"}
 ]';
-  $tay = json_decode($jsonData, true);
+  $tab = json_decode($jsonData, true);
+  // ce tab est un tab indexé (donc des cases ayant des index 0,1,2,3 .... etc)
+  var_dump($tab);
   ?>
   <div class="container">
     <div class="row">
       <?php
-      foreach ($tay as $cle => $produits) {
+      // du coup, on utilise la variante des tab indexés de foreach
+      //  je constate que $produit est tab associatif, et pour acceder à ses données, il faut que je passe par des cles
+      foreach ($tab as $cle => $produits) {
       ?>
         <div class="card col-md-3" style="width: 18rem;">
           <div class="card-body">
+            <!-- pour récupérer le nom : je fais $produit['nom'] et je les affiche comme suit :
+            echo $produit['nom']."<br>"; echo $produit['description'] . "<br>";etc ... -->
             <h5 class="card-title"><?php echo $produits["nom"] ?></h5>
             <h6 class="card-subtitle mb-2 text-muted"><?php echo $produits["prix"] ?></h6>
             <p class="card-text"><?php echo $produits["description"] ?></p>
