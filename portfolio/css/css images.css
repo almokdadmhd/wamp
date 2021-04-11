@@ -1,0 +1,15 @@
+.colon-1  { display: none;
+}
+img {
+    width: 120px;
+    height: 100px;
+}
+
+img:first-child {
+    width : 500px;
+    height: 350px;
+}
+
+.images p {
+    display: none;
+}
